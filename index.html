@@ -1,105 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đặng Quốc Phong - Giảng viên | CV</title>
-<style>
-  :root { --primary:#1e5eff; --dark:#14213d; --light:#f5f7fb; --text:#333; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:'Segoe UI',Roboto,Arial,sans-serif; color:var(--text); background:var(--light); line-height:1.6; }
-  header { background:linear-gradient(135deg,var(--dark),var(--primary)); color:#fff; text-align:center; padding:60px 20px; }
-  .avatar { width:130px; height:130px; border-radius:50%; background:#fff; color:var(--primary); font-size:48px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; border:4px solid rgba(255,255,255,.6); }
-  header h1 { font-size:2.2rem; }
-  header p { opacity:.9; margin-top:6px; }
-  nav { background:#fff; position:sticky; top:0; box-shadow:0 2px 6px rgba(0,0,0,.08); text-align:center; padding:12px; z-index:10; }
-  nav a { color:var(--dark); text-decoration:none; margin:0 14px; font-weight:600; }
-  nav a:hover { color:var(--primary); }
-  main { max-width:960px; margin:30px auto; padding:0 20px; }
-  section { background:#fff; border-radius:10px; padding:28px; margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
-  h2 { color:var(--primary); margin-bottom:16px; border-bottom:2px solid var(--light); padding-bottom:8px; }
-  .info li { list-style:none; margin:6px 0; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
-  .tag { background:var(--light); border-left:4px solid var(--primary); padding:10px 14px; border-radius:6px; }
-  .item { margin-bottom:16px; }
-  .item h3 { font-size:1.05rem; color:var(--dark); }
-  .item .time { color:#777; font-size:.9rem; }
-  ul.list { padding-left:20px; }
-  footer { text-align:center; padding:20px; color:#777; font-size:.9rem; }
-</style>
-</head>
-<body>
-<header>
-  <div class="avatar">QP</div>
-  <h1>Đặng Quốc Phong</h1>
-  <p>Giảng viên – Trường Cao đẳng Công nghệ thông tin</p>
-</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặng Quốc Phong - Giảng viên | CV</title>
+    <style>
+      :root {
+        --primary: #1e5eff;
+        --dark: #14213d;
+        --light: #f5f7fb;
+        --text: #333;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+        background: var(--light);
+        line-height: 1.6;
+      }
+      header {
+        background: linear-gradient(135deg, var(--dark), var(--primary));
+        color: #fff;
+        text-align: center;
+        padding: 60px 20px;
+      }
+      .avatar {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: #fff;
+        color: var(--primary);
+        font-size: 48px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        border: 4px solid rgba(255, 255, 255, 0.6);
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
+      header p {
+        opacity: 0.9;
+        margin-top: 6px;
+      }
+      nav {
+        background: #fff;
+        position: sticky;
+        top: 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        padding: 12px;
+        z-index: 10;
+      }
+      nav a {
+        color: var(--dark);
+        text-decoration: none;
+        margin: 0 14px;
+        font-weight: 600;
+      }
+      nav a:hover {
+        color: var(--primary);
+      }
+      main {
+        max-width: 960px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+      section {
+        background: #fff;
+        border-radius: 10px;
+        padding: 28px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      h2 {
+        color: var(--primary);
+        margin-bottom: 16px;
+        border-bottom: 2px solid var(--light);
+        padding-bottom: 8px;
+      }
+      .info li {
+        list-style: none;
+        margin: 6px 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+      }
+      .tag {
+        background: var(--light);
+        border-left: 4px solid var(--primary);
+        padding: 10px 14px;
+        border-radius: 6px;
+      }
+      .item {
+        margin-bottom: 16px;
+      }
+      .item h3 {
+        font-size: 1.05rem;
+        color: var(--dark);
+      }
+      .item .time {
+        color: #777;
+        font-size: 0.9rem;
+      }
+      ul.list {
+        padding-left: 20px;
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        color: #777;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="avatar">QP</div>
+      <h1>Đặng Quốc Phong</h1>
+      <p>Giảng viên – Trường Cao đẳng Công nghệ thông tin</p>
+    </header>
 
-<nav>
-  <a href="#about">Giới thiệu</a>
-  <a href="#skills">Chuyên môn</a>
-  <a href="#experience">Kinh nghiệm</a>
-  <a href="#education">Học vấn</a>
-  <a href="#contact">Liên hệ</a>
-</nav>
+    <nav>
+      <a href="#about">Giới thiệu</a>
+      <a href="#skills">Chuyên môn</a>
+      <a href="#experience">Kinh nghiệm</a>
+      <a href="#education">Học vấn</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
 
-<main>
-  <section id="about">
-    <h2>Giới thiệu bản thân</h2>
-    <p>Tôi là Đặng Quốc Phong, giảng viên giảng dạy tại Trường Cao đẳng Công nghệ thông tin. Tôi đam mê truyền đạt kiến thức, gắn lý thuyết với thực hành và giúp sinh viên sẵn sàng cho môi trường làm việc thực tế trong ngành công nghệ thông tin.</p>
-    <ul class="info" style="margin-top:12px">
-      <li><strong>Nghề nghiệp:</strong> Giảng viên</li>
-      <li><strong>Đơn vị công tác:</strong> Trường Cao đẳng Công nghệ thông tin</li>
-    </ul>
-  </section>
+    <main>
+      <section id="about">
+        <h2>Giới thiệu bản thân</h2>
+        <p>
+          Tôi là Nguyễn Công Minh, giảng viên giảng dạy tại Trường Cao đẳng Công
+          nghệ thông tin. Tôi đam mê truyền đạt kiến thức, gắn lý thuyết với
+          thực hành và giúp sinh viên sẵn sàng cho môi trường làm việc thực tế
+          trong ngành công nghệ thông tin.
+        </p>
+        <ul class="info" style="margin-top: 12px">
+          <li><strong>Nghề nghiệp:</strong> Giảng viên</li>
+          <li>
+            <strong>Đơn vị công tác:</strong> Trường Cao đẳng Công nghệ thông
+            tin
+          </li>
+        </ul>
+      </section>
 
-  <section id="skills">
-    <h2>Lĩnh vực chuyên môn</h2>
-    <div class="grid">
-      <div class="tag">Lập trình Web</div>
-      <div class="tag">Cơ sở dữ liệu</div>
-      <div class="tag">Lập trình hướng đối tượng</div>
-      <div class="tag">Mạng máy tính</div>
-      <div class="tag">Git &amp; GitHub</div>
-      <div class="tag">Phương pháp giảng dạy</div>
-    </div>
-  </section>
+      <section id="skills">
+        <h2>Lĩnh vực chuyên môn</h2>
+        <div class="grid">
+          <div class="tag">Lập trình Web</div>
+          <div class="tag">Cơ sở dữ liệu</div>
+          <div class="tag">Lập trình hướng đối tượng</div>
+          <div class="tag">Mạng máy tính</div>
+          <div class="tag">Git &amp; GitHub</div>
+          <div class="tag">Phương pháp giảng dạy</div>
+        </div>
+      </section>
 
-  <section id="experience">
-    <h2>Kinh nghiệm làm việc</h2>
-    <div class="item">
-      <h3>Giảng viên – Trường Cao đẳng Công nghệ thông tin</h3>
-      <div class="time">Hiện tại</div>
-      <ul class="list">
-        <li>Giảng dạy các học phần về công nghệ thông tin cho sinh viên cao đẳng.</li>
-        <li>Xây dựng giáo trình, bài giảng và bài tập thực hành.</li>
-        <li>Hướng dẫn sinh viên thực hiện đồ án, dự án và thực tập.</li>
-      </ul>
-    </div>
-  </section>
+      <section id="experience">
+        <h2>Kinh nghiệm làm việc</h2>
+        <div class="item">
+          <h3>Giảng viên – Trường Cao đẳng Công nghệ thông tin</h3>
+          <div class="time">Hiện tại</div>
+          <ul class="list">
+            <li>
+              Giảng dạy các học phần về công nghệ thông tin cho sinh viên cao
+              đẳng.
+            </li>
+            <li>Xây dựng giáo trình, bài giảng và bài tập thực hành.</li>
+            <li>Hướng dẫn sinh viên thực hiện đồ án, dự án và thực tập.</li>
+          </ul>
+        </div>
+      </section>
 
-  <section id="education">
-    <h2>Học vấn &amp; Chứng chỉ</h2>
-    <div class="item">
-      <h3>Chuyên ngành Công nghệ thông tin</h3>
-      <div class="time">Cập nhật thông tin trường / năm tốt nghiệp</div>
-    </div>
-    <div class="item">
-      <h3>Chứng chỉ nghiệp vụ sư phạm</h3>
-      <div class="time">Cập nhật thông tin</div>
-    </div>
-  </section>
+      <section id="education">
+        <h2>Học vấn &amp; Chứng chỉ</h2>
+        <div class="item">
+          <h3>Chuyên ngành Công nghệ thông tin</h3>
+          <div class="time">Cập nhật thông tin trường / năm tốt nghiệp</div>
+        </div>
+        <div class="item">
+          <h3>Chứng chỉ nghiệp vụ sư phạm</h3>
+          <div class="time">Cập nhật thông tin</div>
+        </div>
+      </section>
 
-  <section id="contact">
-    <h2>Liên hệ</h2>
-    <ul class="info">
-      <li><strong>Email:</strong> email@example.com</li>
-      <li><strong>Điện thoại:</strong> 0xxx xxx xxx</li>
-      <li><strong>Địa chỉ:</strong> Trường Cao đẳng Công nghệ thông tin</li>
-    </ul>
-  </section>
-</main>
+      <section id="contact">
+        <h2>Liên hệ</h2>
+        <ul class="info">
+          <li><strong>Email:</strong> email@example.com</li>
+          <li><strong>Điện thoại:</strong> 0xxx xxx xxx</li>
+          <li><strong>Địa chỉ:</strong> Trường Cao đẳng Công nghệ thông tin</li>
+        </ul>
+      </section>
+    </main>
 
-<footer>&copy; 2026 Đặng Quốc Phong. All rights reserved.</footer>
-</body>
+    <footer>&copy; 2026 Đặng Quốc Phong. All rights reserved.</footer>
+  </body>
 </html>

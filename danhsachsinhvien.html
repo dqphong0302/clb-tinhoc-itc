@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danh sách sinh viên</title>
+<style>
+  :root { --primary:#1e5eff; --dark:#14213d; --light:#f5f7fb; --danger:#e53935; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',Roboto,Arial,sans-serif; background:var(--light); color:#333; }
+  header { background:linear-gradient(135deg,var(--dark),var(--primary)); color:#fff; text-align:center; padding:30px 20px; }
+  main { max-width:1000px; margin:24px auto; padding:0 16px; }
+  .card { background:#fff; border-radius:10px; padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+  h2 { color:var(--primary); margin-bottom:14px; font-size:1.2rem; }
+  form { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; align-items:end; }
+  label { font-size:.85rem; font-weight:600; display:block; margin-bottom:4px; }
+  input, select { width:100%; padding:9px 10px; border:1px solid #ccd; border-radius:6px; font-size:.95rem; }
+  button { padding:9px 16px; border:none; border-radius:6px; background:var(--primary); color:#fff; font-weight:600; cursor:pointer; }
+  button:hover { opacity:.9; }
+  button.del { background:var(--danger); padding:5px 10px; font-size:.85rem; }
+  .toolbar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+  .toolbar input { flex:1; min-width:200px; }
+  .toolbar select { width:auto; }
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; }
+  th, td { padding:10px 12px; text-align:left; border-bottom:1px solid #eee; white-space:nowrap; }
+  th { background:var(--dark); color:#fff; cursor:pointer; user-select:none; }
+  tr:hover td { background:#f0f4ff; }
+  .empty { text-align:center; color:#888; padding:20px; }
+  .count { margin-top:10px; color:#666; font-size:.9rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Danh sách sinh viên</h1>
+  <p>Trường Cao đẳng Công nghệ thông tin</p>
+</header>
+
+<main>
+  <div class="card">
+    <h2>Thêm sinh viên</h2>
+    <form id="form">
+      <div><label for="mssv">Mã SV</label><input id="mssv" required></div>
+      <div><label for="name">Họ và tên</label><input id="name" required></div>
+      <div><label for="dob">Ngày sinh</label><input id="dob" type="date" required></div>
+      <div><label for="cls">Lớp</label><input id="cls" required></div>
+      <div><label for="gpa">Điểm TB</label><input id="gpa" type="number" min="0" max="10" step="0.01" required></div>
+      <div><button type="submit">Thêm</button></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Danh sách</h2>
+    <div class="toolbar">
+      <input id="search" placeholder="Tìm theo mã, tên hoặc lớp...">
+      <select id="filter"><option value="">Tất cả lớp</option></select>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-key="mssv">Mã SV</th><th data-key="name">Họ và tên</th>
+            <th data-key="dob">Ngày sinh</th><th data-key="cls">Lớp</th>
+            <th data-key="gpa">Điểm TB</th><th>Xếp loại</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const KEY = 'dssv';
+let students = JSON.parse(localStorage.getItem(KEY) || 'null') || [
+  { mssv:'SV001', name:'Nguyễn Văn An', dob:'2005-03-12', cls:'CNTT1', gpa:8.5 },
+  { mssv:'SV002', name:'Trần Thị Bình', dob:'2005-07-25', cls:'CNTT1', gpa:7.2 },
+  { mssv:'SV003', name:'Lê Hoàng Cường', dob:'2004-11-02', cls:'CNTT2', gpa:9.1 },
+  { mssv:'SV004', name:'Phạm Minh Dũng', dob:'2005-01-18', cls:'CNTT2', gpa:5.8 }
+];
+let sortKey = null, sortAsc = true;
+
+const save = () => localStorage.setItem(KEY, JSON.stringify(students));
+const rank = g => g >= 9 ? 'Xuất sắc' : g >= 8 ? 'Giỏi' : g >= 7 ? 'Khá' : g >= 5 ? 'Trung bình' : 'Yếu';
+const fmtDate = d => d.split('-').reverse().join('/');
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function render() {
+  const q = $('search').value.trim().toLowerCase();
+  const f = $('filter').value;
+  let list = students.filter(s =>
+    (!f || s.cls === f) &&
+    (!q || [s.mssv, s.name, s.cls].some(v => v.toLowerCase().includes(q))));
+  if (sortKey) list.sort((a, b) => {
+    const r = a[sortKey] > b[sortKey] ? 1 : a[sortKey] < b[sortKey] ? -1 : 0;
+    return sortAsc ? r : -r;
+  });
+
+  $('tbody').innerHTML = list.length ? list.map(s => `
+    <tr>
+      <td>${esc(s.mssv)}</td><td>${esc(s.name)}</td><td>${fmtDate(s.dob)}</td>
+      <td>${esc(s.cls)}</td><td>${s.gpa.toFixed(2)}</td><td>${rank(s.gpa)}</td>
+      <td><button class="del" data-id="${esc(s.mssv)}">Xóa</button></td>
+    </tr>`).join('') : '<tr><td colspan="7" class="empty">Không có sinh viên</td></tr>';
+  $('count').textContent = `Hiển thị ${list.length} / ${students.length} sinh viên`;
+
+  const classes = [...new Set(students.map(s => s.cls))].sort();
+  $('filter').innerHTML = '<option value="">Tất cả lớp</option>' +
+    classes.map(c => `<option${c === f ? ' selected' : ''}>${esc(c)}</option>`).join('');
+}
+
+$('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const mssv = $('mssv').value.trim();
+  if (students.some(s => s.mssv.toLowerCase() === mssv.toLowerCase())) {
+    alert('Mã sinh viên đã tồn tại!');
+    return;
+  }
+  students.push({ mssv, name:$('name').value.trim(), dob:$('dob').value,
+                  cls:$('cls').value.trim(), gpa:parseFloat($('gpa').value) });
+  save(); e.target.reset(); render();
+});
+
+$('tbody').addEventListener('click', e => {
+  const id = e.target.dataset.id;
+  if (id && confirm('Xóa sinh viên ' + id + '?')) {
+    students = students.filter(s => s.mssv !== id);
+    save(); render();
+  }
+});
+
+document.querySelectorAll('th[data-key]').forEach(th => th.addEventListener('click', () => {
+  sortAsc = sortKey === th.dataset.key ? !sortAsc : true;
+  sortKey = th.dataset.key;
+  render();
+}));
+
+$('search').addEventListener('input', render);
+$('filter').addEventListener('change', render);
+render();
+</script>
+</body>
+</html>
